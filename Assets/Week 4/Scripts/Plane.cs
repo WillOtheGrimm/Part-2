@@ -14,6 +14,9 @@ public class Plane : MonoBehaviour
     public float speed = 1;
     public AnimationCurve landing;
     float landingTimer;
+    public Sprite[] planeSprites = new Sprite[4];
+    SpriteRenderer spriteRenderer;
+
 
     void Start()
     { 
@@ -21,6 +24,18 @@ public class Plane : MonoBehaviour
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, transform.position);
         rigidbody = GetComponent<Rigidbody2D>();
+        
+
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = planeSprites[Random.Range(0, 3)];
+
+        transform.position = new Vector3(Random.Range(-5 , 5) , Random.Range(-5, 5) , 0);
+        transform.Rotate(new Vector3 (0, 0 , Mathf.Rad2Deg * Random.Range(0, 360)));
+        speed = Random.Range(1, 3);
+        
+
+
     }
 
     
@@ -36,6 +51,8 @@ public class Plane : MonoBehaviour
         rigidbody.MovePosition(rigidbody.position + (Vector2)transform.up * speed * Time.deltaTime);
 
     }
+
+
 
     void Update()
     {
@@ -96,4 +113,15 @@ public class Plane : MonoBehaviour
             lastPosition = newPosition;
         }
     }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+
+    }
+
+
+
+
+
 }
