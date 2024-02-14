@@ -18,10 +18,12 @@ public class SceneLoader : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         //this line is to make sure that the scene number doesn't go to high
-        int nextSceneIndex = (currentSceneIndex + 1) % SceneManager.sceneCountInBuildSettings;
+        int nextSceneIndex = (currentSceneIndex + 2) % SceneManager.sceneCountInBuildSettings;
 
         //this line is to load a scene
         SceneManager.LoadScene(nextSceneIndex);
+
+       
 
     }
 
