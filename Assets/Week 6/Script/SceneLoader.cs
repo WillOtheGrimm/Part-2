@@ -18,7 +18,7 @@ public class SceneLoader : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         //this line is to make sure that the scene number doesn't go to high
-        int nextSceneIndex = (currentSceneIndex + 2) % SceneManager.sceneCountInBuildSettings;
+        int nextSceneIndex = (currentSceneIndex + 1) % SceneManager.sceneCountInBuildSettings;
 
         //this line is to load a scene
         SceneManager.LoadScene(nextSceneIndex);
@@ -29,19 +29,29 @@ public class SceneLoader : MonoBehaviour
 
 
 
-
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+
+            //this line is to keep track of which scene we are on
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+            //this line is to make sure that the scene number doesn't go to high
+            int nextSceneIndex = (currentSceneIndex + 1) % SceneManager.sceneCountInBuildSettings;
+
+            //this line is to load a scene
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+    }
+
+
+    public void LoadKnightScene ()
+    {
+       
+        SceneManager.LoadScene("Week 5");
+
     }
 }
