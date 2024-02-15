@@ -16,6 +16,12 @@ public class HealthBar : MonoBehaviour
 
     }
 
+    public void SetAccurateHealth(float health)
+    {
+       slider.value = health;
 
-   
+
+    }
+
+
 }
