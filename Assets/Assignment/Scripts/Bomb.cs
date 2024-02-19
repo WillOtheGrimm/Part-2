@@ -12,14 +12,18 @@ public class Bomb : MonoBehaviour
 
     Vector2 currentPosition;
     Vector2 direction;
-    
+    public float speed = 0.05f;
+    int flipped;
+    public BombSpawner flippedSpawns;
 
 
     // Start is called before the first frame update
     void Start()
     {
-       //direction.x =  Random.Range(0, 100);
-       //direction.y = Random.Range(0, 100);
+       //flippedSpawns = GetComponent<BombSpawner>();
+        //Debug.Log(flippedSpawns);
+       direction.x =  Random.Range(-100, 100);
+       direction.y = Random.Range(0, 100);
 
     }
 
@@ -32,7 +36,7 @@ public class Bomb : MonoBehaviour
 
     private void FixedUpdate()
     {
-       //transform.Translate(direction);
+       transform.Translate(direction.normalized * speed);
     }
 
 
@@ -62,6 +66,21 @@ public class Bomb : MonoBehaviour
     private void OnMouseDrag()
     {
         transform.position = MousePosition() + mouseDirection;
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("THis is collision");
+    }
+
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Debug.Log("Trigger");
+        direction *= -1;
+
     }
 
 }

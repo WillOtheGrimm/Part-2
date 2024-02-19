@@ -10,6 +10,7 @@ public class BombSpawner : MonoBehaviour
     public GameObject[] bombPrefabs = new GameObject[2];
     private GameObject bomb;
     float timePassed = 0;
+    public int flippedSpawns = 1;
     
 
 
@@ -18,8 +19,9 @@ public class BombSpawner : MonoBehaviour
     {
         
         bomb = Instantiate(bombPrefabs[Random.Range(0, 2)]);
+        bomb.GetComponent<Bomb>();
+            
         bomb.transform.position = transform.position;
-
 
 
 
@@ -30,7 +32,7 @@ public class BombSpawner : MonoBehaviour
     void Update()
     {
         timePassed += Time.deltaTime;
-        if (timePassed >= 3f)
+        if (timePassed >= 1.5f)
         {
             bomb = Instantiate(bombPrefabs[Random.Range(0, 2)]);
             bomb.transform.position = transform.position;
