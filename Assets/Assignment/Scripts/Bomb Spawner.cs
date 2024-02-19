@@ -32,7 +32,7 @@ public class BombSpawner : MonoBehaviour
     void Update()
     {
         timePassed += Time.deltaTime;
-        if (timePassed >= 1.5f)
+        if (timePassed >= 2f)
         {
             bomb = Instantiate(bombPrefabs[Random.Range(0, 2)]);
             bomb.transform.position = transform.position;

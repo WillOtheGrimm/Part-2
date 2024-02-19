@@ -13,34 +13,38 @@ public class Bomb : MonoBehaviour
     Vector2 currentPosition;
     Vector2 direction;
     public float speed = 0.05f;
-    int flipped;
-    public BombSpawner flippedSpawns;
-
+    Animator animator;
+    float deathTimer;
 
     // Start is called before the first frame update
     void Start()
     {
-       //flippedSpawns = GetComponent<BombSpawner>();
-        //Debug.Log(flippedSpawns);
-       direction.x =  Random.Range(-100, 100);
-       direction.y = Random.Range(0, 100);
+        animator = GetComponent<Animator>();
+
+        direction.x = Random.Range(-100, 100);
+        direction.y = Random.Range(0, 100);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        deathTimer += Time.deltaTime;
+
+
+        if (deathTimer >= 8f)
+        {
+            BombExplode();
+            deathTimer = 0;
+        }
+
     }
 
 
     private void FixedUpdate()
     {
-       transform.Translate(direction.normalized * speed);
+        transform.Translate(direction.normalized * speed);
     }
-
-
-
 
 
 
@@ -54,7 +58,7 @@ public class Bomb : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    
+
     private void OnMouseDown()
     {
         mouseDirection = gameObject.transform.position - MousePosition();
@@ -78,10 +82,24 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("Trigger");
         direction *= -1;
 
     }
+
+
+
+    //This section is for the bomb death timer / animation
+
+    private void BombExplode()
+    {
+        animator.SetTrigger("Explode");
+        Destroy(gameObject, 0.55f);
+
+    }
+
+
+
+
 
 }
 
