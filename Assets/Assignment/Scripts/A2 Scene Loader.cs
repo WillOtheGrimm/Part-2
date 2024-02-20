@@ -23,7 +23,10 @@ public class A2SceneLoader : MonoBehaviour
     public void GameLoader() 
     {
         SceneManager.LoadScene("Main Game");
+    }
 
-
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Title Screen");
     }
 }

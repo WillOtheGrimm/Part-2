@@ -12,10 +12,13 @@ public class Bomb : MonoBehaviour
     public float speed = 0.05f;
     Animator animator;
     float deathTimer;
+    float fadeTimer;
     public string correctGoalTag = "Red Goal";
     public string otherGoalTag = "Black Goal";
     Collider2D collider2D;
-
+    public AnimationCurve fade;
+    bool isInGoal = false;
+    public GameObject hp;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +45,18 @@ public class Bomb : MonoBehaviour
             BombExplode();
             deathTimer = 0;
         }
+
+        if (isInGoal == true)
+        {
+            fadeTimer += 0.1f * Time.deltaTime;
+            float interpolation = fade.Evaluate(fadeTimer);
+            if (transform.localScale.z < 0.1f)
+            {
+                Destroy(gameObject);
+            }
+            transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, interpolation);
+        }
+
 
     }
 
@@ -84,7 +99,6 @@ public class Bomb : MonoBehaviour
     private void OnMouseUp()
     {
         collider2D.enabled = true;
-        Debug.Log("You have released");
 
     }
 
@@ -104,7 +118,9 @@ public class Bomb : MonoBehaviour
 
         if (collision.CompareTag(correctGoalTag)) 
         {
-            Debug.Log("This is correct");            
+
+            isInGoal = true;
+
 
         }
 
@@ -112,7 +128,6 @@ public class Bomb : MonoBehaviour
         if (collision.CompareTag(otherGoalTag))
         {
 
-            Debug.Log("This is wrong");
             BombExplode();
 
         }
@@ -130,6 +145,7 @@ public class Bomb : MonoBehaviour
     {
         animator.SetTrigger("Explode");
         Destroy(gameObject, 0.55f);
+        hp.SendMessage("Damage", 1 , SendMessageOptions.DontRequireReceiver);
 
     }
 

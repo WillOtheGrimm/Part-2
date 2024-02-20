@@ -11,17 +11,14 @@ public class BombSpawner : MonoBehaviour
     private GameObject bomb;
     float timePassed = 0;
     public int flippedSpawns = 1;
-    
+    public GameObject hp;
 
 
     // Start is called before the first frame update
     void Start()
     {
         
-        bomb = Instantiate(bombPrefabs[Random.Range(0, 2)]);
-        bomb.GetComponent<Bomb>();
-            
-        bomb.transform.position = transform.position;
+        
 
 
 
@@ -35,6 +32,8 @@ public class BombSpawner : MonoBehaviour
         if (timePassed >= 2f)
         {
             bomb = Instantiate(bombPrefabs[Random.Range(0, 2)]);
+            bomb.GetComponent<Bomb>().hp = hp;
+
             bomb.transform.position = transform.position;
             timePassed = 0;
         }
