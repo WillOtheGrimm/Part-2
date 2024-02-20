@@ -8,23 +8,28 @@ using UnityEngine.UIElements;
 public class Bomb : MonoBehaviour
 {
     Vector3 mouseDirection;
-
-
-    Vector2 currentPosition;
     Vector2 direction;
     public float speed = 0.05f;
     Animator animator;
     float deathTimer;
+    public string correctGoalTag = "Red Goal";
+    public string otherGoalTag = "Black Goal";
+    Collider2D collider2D;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        collider2D = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
 
         direction.x = Random.Range(-100, 100);
         direction.y = Random.Range(0, 100);
 
     }
+
+
+
 
     // Update is called once per frame
     void Update()
@@ -39,6 +44,9 @@ public class Bomb : MonoBehaviour
         }
 
     }
+
+
+
 
 
     private void FixedUpdate()
@@ -62,6 +70,7 @@ public class Bomb : MonoBehaviour
     private void OnMouseDown()
     {
         mouseDirection = gameObject.transform.position - MousePosition();
+        collider2D.enabled = false;
     }
 
 
@@ -72,17 +81,44 @@ public class Bomb : MonoBehaviour
         transform.position = MousePosition() + mouseDirection;
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnMouseUp()
     {
-        Debug.Log("THis is collision");
+        collider2D.enabled = true;
+        Debug.Log("You have released");
+
     }
+
+
+
 
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Barrier") )
+        { 
+        
         direction *= -1;
+        
+        }
+
+        if (collision.CompareTag(correctGoalTag)) 
+        {
+            Debug.Log("This is correct");            
+
+        }
+
+
+        if (collision.CompareTag(otherGoalTag))
+        {
+
+            Debug.Log("This is wrong");
+            BombExplode();
+
+        }
+
+
+
 
     }
 

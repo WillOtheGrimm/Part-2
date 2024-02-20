@@ -174,6 +174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.05
+  correctGoalTag: Black Goal
+  otherGoalTag: Red Goal
 --- !u!50 &-4879716861840911321
 Rigidbody2D:
   serializedVersion: 4
