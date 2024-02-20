@@ -13,18 +13,6 @@ public class BombSpawner : MonoBehaviour
     public int flippedSpawns = 1;
     public GameObject hp;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-        
-
-
-
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -37,9 +25,5 @@ public class BombSpawner : MonoBehaviour
             bomb.transform.position = transform.position;
             timePassed = 0;
         }
-
-
-
-
     }
 }

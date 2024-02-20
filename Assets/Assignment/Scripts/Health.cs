@@ -13,17 +13,6 @@ public class Health : MonoBehaviour
         health = 3;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void FixedUpdate()
-    {
-        
-    }
-
     public void Damage (float damageTaken)
     {
         Debug.Log("Hurt");

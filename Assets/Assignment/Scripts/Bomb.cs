@@ -9,7 +9,7 @@ public class Bomb : MonoBehaviour
 {
     Vector3 mouseDirection;
     Vector2 direction;
-    public float speed = 0.05f;
+    public float speed = 0.04f;
     Animator animator;
     float deathTimer;
     float fadeTimer;
@@ -30,8 +30,6 @@ public class Bomb : MonoBehaviour
         direction.y = Random.Range(0, 100);
 
     }
-
-
 
 
     // Update is called once per frame
@@ -59,9 +57,6 @@ public class Bomb : MonoBehaviour
 
 
     }
-
-
-
 
 
     private void FixedUpdate()
@@ -99,41 +94,25 @@ public class Bomb : MonoBehaviour
     private void OnMouseUp()
     {
         collider2D.enabled = true;
-
     }
-
-
-
-
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Barrier") )
-        { 
-        
-        direction *= -1;
-        
-        }
-
-        if (collision.CompareTag(correctGoalTag)) 
+        if (collision.CompareTag("Barrier"))
         {
-
-            isInGoal = true;
-
-
+            direction *= -1;
         }
 
+        if (collision.CompareTag(correctGoalTag))
+        {
+            isInGoal = true;
+        }
 
         if (collision.CompareTag(otherGoalTag))
         {
-
             BombExplode();
-
         }
-
-
-
 
     }
 
@@ -145,7 +124,7 @@ public class Bomb : MonoBehaviour
     {
         animator.SetTrigger("Explode");
         Destroy(gameObject, 0.55f);
-        hp.SendMessage("Damage", 1 , SendMessageOptions.DontRequireReceiver);
+        hp.SendMessage("Damage", 1, SendMessageOptions.DontRequireReceiver);
 
     }
 

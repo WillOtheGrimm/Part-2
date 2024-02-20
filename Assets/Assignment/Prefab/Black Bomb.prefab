@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbcc90c6f89b2ab4cbba25e73119e312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.05
+  speed: 0.04
   correctGoalTag: Black Goal
   otherGoalTag: Red Goal
   fade:
@@ -200,6 +200,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  hp: {fileID: 0}
 --- !u!50 &-4879716861840911321
 Rigidbody2D:
   serializedVersion: 4
