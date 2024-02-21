@@ -9,31 +9,31 @@ public class FootballPlayer : MonoBehaviour
     bool isSelected = false;
     Vector2 mouseLocation;
     public SpriteRenderer spriteRenderer;
-    Rigidbody2D rigibody; 
+    Rigidbody2D rigibody;
+    public Color selectedColour;
+    public Color unselectedColour;
+    public float speed = 100;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        rigibody = GetComponent<Rigidbody2D>(); 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rigibody = GetComponent<Rigidbody2D>();
+        Selected(false);
     }
 
     // Update is called once per frame
-    void Update()
+   
+    public void Selected(bool isSelected)
     {
-        //mouseLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Selected();
-    }
-    public void Selected()
-    {
-        if (isSelected == true) 
+        if (isSelected ) 
         {
-            spriteRenderer.color = Color.green; 
+            spriteRenderer.color = selectedColour;
         }
-        else if (isSelected == false)
+        else 
         {
-            spriteRenderer.color= Color.red;
+        spriteRenderer.color=unselectedColour;
         }
        
     }
@@ -41,14 +41,14 @@ public class FootballPlayer : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Controller.SetCurrentSelection(this);
         isSelected = true;
     }
          
 
-    /*private void OnMouseUp()
+    public void Move(Vector2 direction)
     {
-        isSelected = false;
-
-    }*/
+    rigibody.AddForce(direction *speed, ForceMode2D.Impulse);
+    }
 
 }
