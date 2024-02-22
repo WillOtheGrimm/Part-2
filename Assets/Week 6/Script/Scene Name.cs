@@ -22,7 +22,7 @@ public class SceneName : MonoBehaviour
     void Start()
     {
         sceneName = GetComponent<TextMeshProUGUI>();
-        sceneName.text = SceneManager.GetActiveScene().name;
+        sceneName.text = SceneManager.GetActiveScene().name;    
 
 
 

@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Controller : MonoBehaviour
 {
@@ -10,7 +11,21 @@ public class Controller : MonoBehaviour
     float charge;
     public float maxCharge;
     Vector2 direction;
+    public static int score = 0;
     public static FootballPlayer CurrentSelection { get; private set; }
+
+
+
+
+
+    private void Start()
+    {
+
+    }
+
+
+
+
     public static void SetCurrentSelection(FootballPlayer player)
     {
         if (CurrentSelection != null)
@@ -21,6 +36,8 @@ public class Controller : MonoBehaviour
         CurrentSelection.Selected(true);
     }
 
+
+
     private void FixedUpdate()
     {
         if (direction != Vector2.zero)
@@ -28,11 +45,16 @@ public class Controller : MonoBehaviour
             CurrentSelection.Move(direction);
             direction = Vector2.zero;
         }
-
-
     }
+
+
+
+
     private void Update()
     {
+        ScoreDisplay.scoreShowcase.text = "Score: " + score;
+
+
         if (CurrentSelection == null) return;
 
         if (Input.GetKeyDown(KeyCode.Space)) 
@@ -51,8 +73,10 @@ public class Controller : MonoBehaviour
             direction = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)CurrentSelection.transform.position).normalized * charge;
         }
 
-    }
 
+
+
+    }
 
 
 }

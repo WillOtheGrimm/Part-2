@@ -10,10 +10,8 @@ public class BombSpawner : MonoBehaviour
     public GameObject[] bombPrefabs = new GameObject[2];
     private GameObject bomb;
     float timePassed = 0;
-    public int flippedSpawns = 1;
     public GameObject hp;
 
-    // Update is called once per frame
     void Update()
     {
         timePassed += Time.deltaTime;
