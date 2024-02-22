@@ -20,15 +20,6 @@ public class Ball : MonoBehaviour
     }
 
     
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A)) 
-        {
-            Scored();
-        }
-    }
-
-    
     public void Scored()
     {
         Controller.score++;

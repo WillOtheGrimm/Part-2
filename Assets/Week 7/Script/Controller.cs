@@ -16,16 +16,6 @@ public class Controller : MonoBehaviour
 
 
 
-
-
-    private void Start()
-    {
-
-    }
-
-
-
-
     public static void SetCurrentSelection(FootballPlayer player)
     {
         if (CurrentSelection != null)

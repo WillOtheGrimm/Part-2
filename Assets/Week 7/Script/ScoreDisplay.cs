@@ -14,9 +14,5 @@ public class ScoreDisplay : MonoBehaviour
     {
         scoreShowcase = gameObject.GetComponent<TextMeshProUGUI>();
             
-    }
-
-
-
-  
+    }  
 }
